@@ -2,7 +2,7 @@
 
 # MirageUShulkers — Шалкер сокровищ
 
-**Механика «Шалкер сокровищ» на спавне с прямой привязкой к [MirageDungeons]([https://github.com/sawervatoryy](https://github.com/sawervatoryy/MirageDungeons)) и 5 уровнями отмычек**
+**Механика «Шалкер сокровищ» на спавне с прямой привязкой к [MirageDungeons](https://github.com/sawervatoryy/MirageDungeons) и 5 уровнями отмычек**
 
 ![Paper](https://img.shields.io/badge/Paper-1.21.4-00ACFF?style=for-the-badge)
 ![Java](https://img.shields.io/badge/Java-21-FF7B00?style=for-the-badge)
