@@ -1,0 +1,47 @@
+# MirageUShulkers — loot.yml (MirageStudio / sawervatoryy)
+# Лут разделён на 5 уровней отмычек: level-1 ... level-5.
+# Удобнее всего редактировать через /mushulker editloot <1-5>
+# (там предметы сохраняются в поле item — Base64 нативной сериализации ItemStack со всеми Data Components).
+# Вручную можно писать записи с полем material вместо item:
+#   chance     — шанс выпадения, %
+#   min-amount — минимальное количество в стаке
+#   max-amount — максимальное количество в стаке
+level-1:
+  '1': {material: BREAD, chance: 60.0, min-amount: 4, max-amount: 10}
+  '2': {material: COAL, chance: 50.0, min-amount: 8, max-amount: 24}
+  '3': {material: IRON_INGOT, chance: 35.0, min-amount: 2, max-amount: 8}
+  '4': {material: ARROW, chance: 40.0, min-amount: 16, max-amount: 48}
+  '5': {material: GOLD_INGOT, chance: 20.0, min-amount: 1, max-amount: 5}
+  '6': {material: EXPERIENCE_BOTTLE, chance: 25.0, min-amount: 2, max-amount: 8}
+level-2:
+  '1': {material: COOKED_BEEF, chance: 55.0, min-amount: 8, max-amount: 16}
+  '2': {material: IRON_INGOT, chance: 50.0, min-amount: 6, max-amount: 16}
+  '3': {material: GOLD_INGOT, chance: 35.0, min-amount: 4, max-amount: 12}
+  '4': {material: DIAMOND, chance: 12.0, min-amount: 1, max-amount: 3}
+  '5': {material: EXPERIENCE_BOTTLE, chance: 35.0, min-amount: 8, max-amount: 24}
+  '6': {material: GOLDEN_APPLE, chance: 15.0, min-amount: 1, max-amount: 2}
+level-3:
+  '1': {material: GOLDEN_CARROT, chance: 50.0, min-amount: 8, max-amount: 24}
+  '2': {material: DIAMOND, chance: 30.0, min-amount: 2, max-amount: 6}
+  '3': {material: EMERALD, chance: 30.0, min-amount: 4, max-amount: 12}
+  '4': {material: GOLDEN_APPLE, chance: 25.0, min-amount: 2, max-amount: 5}
+  '5': {material: EXPERIENCE_BOTTLE, chance: 40.0, min-amount: 16, max-amount: 40}
+  '6': {material: ENDER_PEARL, chance: 20.0, min-amount: 2, max-amount: 6}
+  '7': {material: NETHERITE_SCRAP, chance: 6.0, min-amount: 1, max-amount: 2}
+level-4:
+  '1': {material: DIAMOND, chance: 45.0, min-amount: 4, max-amount: 10}
+  '2': {material: EMERALD, chance: 40.0, min-amount: 8, max-amount: 20}
+  '3': {material: GOLDEN_APPLE, chance: 35.0, min-amount: 3, max-amount: 8}
+  '4': {material: NETHERITE_SCRAP, chance: 18.0, min-amount: 1, max-amount: 3}
+  '5': {material: ENDER_PEARL, chance: 30.0, min-amount: 4, max-amount: 10}
+  '6': {material: EXPERIENCE_BOTTLE, chance: 45.0, min-amount: 24, max-amount: 64}
+  '7': {material: TOTEM_OF_UNDYING, chance: 8.0, min-amount: 1, max-amount: 1}
+level-5:
+  '1': {material: NETHERITE_INGOT, chance: 25.0, min-amount: 1, max-amount: 3}
+  '2': {material: DIAMOND_BLOCK, chance: 30.0, min-amount: 1, max-amount: 4}
+  '3': {material: ENCHANTED_GOLDEN_APPLE, chance: 22.0, min-amount: 1, max-amount: 3}
+  '4': {material: TOTEM_OF_UNDYING, chance: 20.0, min-amount: 1, max-amount: 1}
+  '5': {material: NETHERITE_SCRAP, chance: 35.0, min-amount: 2, max-amount: 6}
+  '6': {material: EXPERIENCE_BOTTLE, chance: 50.0, min-amount: 32, max-amount: 64}
+  '7': {material: ELYTRA, chance: 4.0, min-amount: 1, max-amount: 1}
+  '8': {material: BEACON, chance: 6.0, min-amount: 1, max-amount: 1}

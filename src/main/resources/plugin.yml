@@ -1,0 +1,22 @@
+name: MirageUShulkers
+version: 1.0.0
+main: ru.miragestudio.sawervatoryy.MirageUShulkers
+api-version: '1.21'
+authors: [MirageStudio, sawervatoryy]
+description: Шалкер сокровищ с 5 уровнями отмычек из MirageDungeons и бонусом Красного шалкера x2
+website: https://github.com/sawervatoryy
+softdepend: [MirageDungeons]
+
+commands:
+  mushulker:
+    description: Управление Шалкером сокровищ (MirageStudio)
+    usage: /<command> help
+    aliases: [mushulkers, ushulker]
+
+permissions:
+  mirageushulkers.admin:
+    description: Полный доступ к управлению MirageUShulkers
+    default: op
+  mirageushulkers.use:
+    description: Возможность открывать и просматривать Шалкеры сокровищ
+    default: true

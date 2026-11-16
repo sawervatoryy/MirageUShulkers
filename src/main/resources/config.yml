@@ -1,0 +1,212 @@
+# ============================================================================
+#  MirageUShulkers v1.0.0 — Шалкер сокровищ
+#  Авторы: MirageStudio, sawervatoryy
+#  Форматирование: MiniMessage (<gradient:#00ACFF:#00B0F2>...</gradient>, <#RRGGBB>),
+#  а также классические &-коды и &#RRGGBB. Строки с цветом всегда в кавычках.
+# ============================================================================
+
+# Префикс сообщений ({prefix} подставляется автоматически)
+prefix: "<gradient:#00ACFF:#00B0F2><bold>ᴍɪʀᴀɢᴇ</bold></gradient> &8• <gradient:#00ACFF:#00B0F2>шᴀлᴋᴇᴘ</gradient> &8▸ &f"
+
+# Координаты привязанных шалкеров (заполняется командами /mushulker set и /mushulker remove)
+shulkers: []
+
+# ---------------------------------------------------------------------------
+#  Общие настройки
+# ---------------------------------------------------------------------------
+settings:
+  # На сколько секунд шалкер закрепляется за открывшим игроком
+  session-seconds: 60
+  # Размер GUI с лутом: 9, 18, 27, 36, 45 или 54
+  inventory-size: 27
+  # true  — шалкер закрывается, как только владелец закрыл окно (остатки лута пропадают/выпадают)
+  # false — владелец может заново открыть окно ПКМ до окончания таймера
+  finish-on-owner-close: true
+  # Что делать с несобранным лутом: DROP — выпадает у шалкера, CLEAR — пропадает
+  leftover-action: DROP
+  # Сила отталкивания при клике без отмычки (0 — выключить)
+  deny-knockback: 0.6
+  # Задержка между повторными сообщениями об отказе (мс)
+  deny-cooldown-ms: 1500
+  # Показывать владельцу оставшееся время в actionbar
+  actionbar-timer: true
+  # Материалы шалкера в обычном состоянии и при событии «Красный шалкер»
+  normal-material: PURPLE_SHULKER_BOX
+  red-material: RED_SHULKER_BOX
+
+# ---------------------------------------------------------------------------
+#  Отмычки MirageDungeons (1–5 LVL)
+#  Привязка эталона: возьмите отмычку нужного уровня в правую руку и введите
+#  /mushulker bindkey <1-5> — предмет сохранится в поле item (Base64, все Data Components).
+# ---------------------------------------------------------------------------
+lockpicks:
+  # Режим сравнения с эталоном:
+  #  LOOSE  — материал + название + модель + PDC-ключи эталона со значениями (рекомендуется)
+  #  KEYS   — материал + наличие PDC-ключей эталона (значения игнорируются, если у отмычек уникальные данные)
+  #  STRICT — полное совпадение метаданных (ItemStack#isSimilar)
+  match-mode: LOOSE
+  # Запасной способ: поиск PDC-ключа MirageDungeons с уровнем 1–5 (работает, даже если эталон не привязан)
+  pdc-detection:
+    enabled: true
+    namespace: miragedungeons
+    # Ключ учитывается, если его имя содержит одно из слов; уровень берётся из значения либо из последней цифры имени
+    key-hints: [level, lvl, tier, lockpick, key]
+
+  level-1:
+    name: "&7Отмычка I ур."
+    red-chance: 3.0      # шанс Красного шалкера (x2), %
+    min-items: 2         # минимум стаков лута
+    max-items: 4         # максимум стаков лута
+    item: ""             # эталон — заполняется командой /mushulker bindkey 1
+  level-2:
+    name: "&aОтмычка II ур."
+    red-chance: 6.0
+    min-items: 3
+    max-items: 5
+    item: ""
+  level-3:
+    name: "&bОтмычка III ур."
+    red-chance: 10.0
+    min-items: 4
+    max-items: 6
+    item: ""
+  level-4:
+    name: "&dОтмычка IV ур."
+    red-chance: 15.0
+    min-items: 5
+    max-items: 7
+    item: ""
+  level-5:
+    name: "&#FFAA00Отмычка V ур."
+    red-chance: 25.0
+    min-items: 6
+    max-items: 9
+    item: ""
+
+# ---------------------------------------------------------------------------
+#  Красный шалкер (бонус x2)
+# ---------------------------------------------------------------------------
+red-shulker:
+  multiplier: 2
+  # Заголовок для открывшего игрока (пусто — не показывать)
+  title: "<gradient:#FF3B3B:#FF7B00><bold>ᴋᴘᴀᴄʜый шᴀлᴋᴇᴘ!</bold></gradient>"
+  subtitle: "&fЛут удвоен &#FF3B3Bx2 &8| &7{level-name}"
+  # Что НЕ удваивается (такие предметы остаются в единственном экземпляре)
+  exclude:
+    armor: true
+    weapons: true
+    tools: false
+    materials:
+      - ELYTRA
+      - TOTEM_OF_UNDYING
+      - ENCHANTED_GOLDEN_APPLE
+
+# ---------------------------------------------------------------------------
+#  GUI
+# ---------------------------------------------------------------------------
+gui:
+  # Доступные плейсхолдеры: {level}, {level-name}, {player}
+  title: "&#00ACFF[ шᴀлᴋᴇᴘ ᴄоᴋᴘовищ | {level} уᴘ. ]"
+  title-red: "&#FF3B3B[ ᴋᴘᴀᴄʜый шᴀлᴋᴇᴘ | {level} уᴘ. ]"
+  editor-title: "&#00ACFF[ ᴘᴇдᴀᴋᴛоᴘ луᴛᴀ | {level} уᴘ. ]"
+
+editor:
+  # Шанс новой записи, добавленной в редакторе лута, %
+  default-chance: 10.0
+
+# ---------------------------------------------------------------------------
+#  Звуки и частицы
+#  Звук:     ИМЯ;громкость;высота  (ENTITY_ENDER_DRAGON_GROWL;1.0;1.0 или minecraft:entity.ender_dragon.growl)
+#  Частица:  ИМЯ;количество;разброс;скорость
+# ---------------------------------------------------------------------------
+effects:
+  open:
+    sounds:
+      - "BLOCK_SHULKER_BOX_OPEN;1.0;1.0"
+      - "BLOCK_ENCHANTMENT_TABLE_USE;0.8;1.4"
+    particles:
+      - "END_ROD;25;0.4;0.05"
+      - "ENCHANT;40;0.6;0.8"
+  red:
+    sounds:
+      - "ENTITY_ENDER_DRAGON_GROWL;1.0;1.0"
+      - "ITEM_TOTEM_USE;1.0;1.0"
+    particles:
+      - "FLAME;60;0.5;0.08"
+      - "LAVA;25;0.5;0.0"
+      - "TOTEM_OF_UNDYING;40;0.5;0.3"
+  deny:
+    sounds:
+      - "BLOCK_CHEST_LOCKED;1.0;1.0"
+      - "ENTITY_VILLAGER_NO;0.7;1.0"
+    particles:
+      - "SMOKE;10;0.3;0.01"
+  close:
+    sounds:
+      - "BLOCK_SHULKER_BOX_CLOSE;1.0;1.0"
+    particles:
+      - "POOF;12;0.3;0.02"
+  # Частицы вокруг открытого шалкера (каждые 0.5 сек)
+  ambient:
+    particles:
+      - "END_ROD;2;0.3;0.01"
+  ambient-red:
+    particles:
+      - "FLAME;3;0.3;0.01"
+
+# ---------------------------------------------------------------------------
+#  Сообщения
+#  Плейсхолдеры: {prefix}, {player}, {level}, {level-name}, {time}, {count} и др.
+# ---------------------------------------------------------------------------
+messages:
+  no-permission: "{prefix}&cУ вас нет прав на это действие."
+  player-only: "{prefix}&cЭту команду можно выполнять только игроком."
+  help:
+    - ""
+    - "<gradient:#00ACFF:#00B0F2><bold>ᴍɪʀᴀɢᴇᴜѕʜᴜʟᴋᴇʀѕ</bold></gradient> &8| &fШалкер сокровищ &7(MirageStudio)"
+    - "&8  ▸ &#00ACFF/mushulker set &7— привязать шалкер, на который вы смотрите"
+    - "&8  ▸ &#00ACFF/mushulker remove &7— отвязать шалкер"
+    - "&8  ▸ &#00ACFF/mushulker bindkey <1-5> &7— привязать отмычку из руки к уровню"
+    - "&8  ▸ &#00ACFF/mushulker editloot <1-5> &7— редактор лута уровня"
+    - "&8  ▸ &#00ACFF/mushulker list &7— список шалкеров"
+    - "&8  ▸ &#00ACFF/mushulker reload &7— перезагрузить конфиги"
+    - ""
+  set-ok: "{prefix}&fШалкер сокровищ &#00ACFFпривязан &8(&7{world} {x} {y} {z}&8)"
+  set-already: "{prefix}&cЭтот шалкер уже привязан."
+  set-not-shulker: "{prefix}&cВы должны смотреть на блок шалкера."
+  no-target-block: "{prefix}&cНаведите прицел на блок (до 6 блоков)."
+  remove-ok: "{prefix}&fШалкер сокровищ &#00ACFFотвязан &8(&7{world} {x} {y} {z}&8)"
+  remove-not-found: "{prefix}&cЭтот блок не является Шалкером сокровищ."
+  bindkey-usage: "{prefix}&fИспользование: &#00ACFF/mushulker bindkey <1-5>"
+  bindkey-air: "{prefix}&cВозьмите отмычку из MirageDungeons в правую руку."
+  bindkey-ok: "{prefix}&fОтмычка &#00ACFF{level} уᴘ. &fпривязана &8(&7{item}&8) &8▸ {level-name}"
+  bindkey-plain: "{prefix}&eВнимание: у предмета нет названия и PDC-тегов — любой такой предмет станет отмычкой."
+  bindkey-overlap: "{prefix}&eПредмет подходит и под уровень &f{other}&e — проверьте, что отмычки уровней различаются."
+  level-invalid: "{prefix}&cУкажите уровень от 1 до 5."
+  editloot-usage: "{prefix}&fИспользование: &#00ACFF/mushulker editloot <1-5>"
+  reload-ok: "{prefix}&fКонфигурация &#00ACFFперезагружена&f."
+  list-empty: "{prefix}&7Шалкеры сокровищ не привязаны."
+  list-header: "{prefix}&fПривязано шалкеров: &#00ACFF{count}"
+  list-line: "&8  {index}. &7{world} &f{x} {y} {z} &8| {state}"
+  no-key:
+    - "{prefix}&fШалкер &#00ACFFзакрыт&f. Для открытия нужна &#00ACFFотмычка&f."
+    - "&8  ▸ &7Добудьте отмычку (&f1–5 уᴘ.&7) в данжах &#00ACFFMirageDungeons &7и нажмите &#00ACFFпᴋм &7по шалкеру."
+  already-active: "{prefix}&cУ вас уже открыт другой Шалкер сокровищ."
+  no-loot: "{prefix}&cДля уровня {level} не настроен лут. Отмычка не потрачена."
+  opened: "{prefix}&fВы открыли шалкер отмычкой {level-name}&f. У вас &#00ACFF{time} &fсек."
+  opened-red: "{prefix}&#FF3B3BКрасный шалкер! &fОтмычка {level-name}&f, лут удвоен &#FF3B3Bx2&f. У вас &#FF7B00{time} &fсек."
+  view-start: "{prefix}&fВы наблюдаете за шалкером игрока &#00ACFF{player} &8(&7{level} уᴘ.&8)"
+  view-denied: "&cЭтот шалкер открыт другим игроком — вы можете только смотреть."
+  timer: "&#00ACFFшᴀлᴋᴇᴘ ᴄоᴋᴘовищ &8| &fОсталось &#00ACFF{time} &fсек."
+  session-expired: "{prefix}&cВремя вышло — шалкер закрылся."
+  session-admin: "{prefix}&cШалкер был отвязан администратором."
+  leftover-dropped: "{prefix}&7Несобранный лут (&f{count} &7стак.) выпал рядом с шалкером."
+  leftover-cleared: "{prefix}&7Несобранный лут (&f{count} &7стак.) пропал."
+  break-hint: "&cШалкер сокровищ нельзя сломать. Используйте &f/mushulker remove"
+  editor-saved: "&aloot.yml сохранён"
+  red-announce:
+    - ""
+    - "<gradient:#FF3B3B:#FF7B00><bold>▌ ᴋᴘᴀᴄʜый шᴀлᴋᴇᴘ ᴄоᴋᴘовищ</bold></gradient>"
+    - "&8  ▸ &fИгрок <gradient:#FF3B3B:#FF7B00>{player}</gradient> &fоткрыл шалкер отмычкой {level-name}&f"
+    - "&8  ▸ &fи сорвал бонус &#FF3B3Bx2 &fк луту! &8(&7{level} уᴘ.&8)"
+    - ""
